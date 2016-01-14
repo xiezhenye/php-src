@@ -71,6 +71,7 @@ struct fpm_worker_pool_config_s {
 	int pm_max_spare_servers;
 	int pm_process_idle_timeout;
 	int pm_max_requests;
+	int pm_max_requests_rand;
 	char *pm_status_path;
 	char *ping_path;
 	char *ping_response;

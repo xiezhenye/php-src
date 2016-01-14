@@ -139,6 +139,7 @@ static struct ini_value_parser_s ini_fpm_pool_options[] = {
 	{ "pm.max_spare_servers",      &fpm_conf_set_integer,     WPO(pm_max_spare_servers) },
 	{ "pm.process_idle_timeout",   &fpm_conf_set_time,        WPO(pm_process_idle_timeout) },
 	{ "pm.max_requests",           &fpm_conf_set_integer,     WPO(pm_max_requests) },
+	{ "pm.max_requests_rand",      &fpm_conf_set_integer,     WPO(pm_max_requests_rand) },
 	{ "pm.status_path",            &fpm_conf_set_string,      WPO(pm_status_path) },
 	{ "ping.path",                 &fpm_conf_set_string,      WPO(ping_path) },
 	{ "ping.response",             &fpm_conf_set_string,      WPO(ping_response) },

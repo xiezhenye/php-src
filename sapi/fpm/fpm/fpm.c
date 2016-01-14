@@ -35,6 +35,7 @@ struct fpm_globals_s fpm_globals = {
 	.log_level = 0,
 	.listening_socket = 0,
 	.max_requests = 0,
+	.max_requests_rand = 0,
 	.is_child = 0,
 	.test_successful = 0,
 	.heartbeat = 0,
@@ -119,6 +120,16 @@ run_child: /* only workers reach this point */
 	fpm_cleanups_run(FPM_CLEANUP_CHILD);
 
 	*max_requests = fpm_globals.max_requests;
+	if (fpm_globals.max_requests_rand) {
+		long d = fpm_globals.max_requests_rand;
+		if (d > RAND_MAX) {
+			d = RAND_MAX;
+		}
+		*max_requests+= (rand() * d) / (RAND_MAX / 2) - d;
+	}
+	
+		
+	zlog(ZLOG_NOTICE, "[pool %s] fpm run child %d with max_request: %d", wp->config->name, fpm_globals.pid, max_requests);
 	return fpm_globals.listening_socket;
 }
 /* }}} */
